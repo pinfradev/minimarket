@@ -7,17 +7,14 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
 
-    @Mappings({
-            @Mapping(source = "code", target = "code"),
-            @Mapping(source = "name", target = "name"),
-            @Mapping(source = "quantity", target = "quantity"),
-            @Mapping(source = "type", target = "type")
-    })
     public Product toProduct(ProductEntity entity);
 
-    @InheritInverseConfiguration
+    List<Product> toProducts(List<ProductEntity> entities);
+
     public ProductEntity toProductEntity(Product product);
 }

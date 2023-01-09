@@ -1,7 +1,5 @@
 package com.poli.miniMarket.modules.producto.domain.dto;
 
-import org.springframework.stereotype.Component;
-
 public class Product {
 
     private Long code;
@@ -11,6 +9,16 @@ public class Product {
     private Integer quantity;
 
     private String type;
+
+    private Boolean active;
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 
     public Long getCode() {
         return code;

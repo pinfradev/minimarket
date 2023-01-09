@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Optional;
+
 @Repository
 public class ProductRepository implements ProductRepositoryContract{
 
@@ -29,5 +32,31 @@ public class ProductRepository implements ProductRepositoryContract{
         ProductEntity entity = mapper.toProductEntity(product);
         ProductEntity savedEntity = productCrudRepository.save(entity);
         return  product;
+    }
+
+    public List<Product> getAllServices() {
+        List<ProductEntity> entities = (List<ProductEntity>) productCrudRepository.findAll();
+        return mapper.toProducts(entities);
+    }
+
+    public Optional<Product> getProductByCode(long code) {
+        return productCrudRepository.findById(code).map(prod -> mapper.toProduct(prod));
+    }
+
+    public Optional<List<Product>> findByName(String name) {
+        Optional<List<ProductEntity>> entities = productCrudRepository.findByName(name);
+        return entities.map(ents -> {
+            return mapper.toProducts(ents);
+        });
+    }
+    public Optional<List<Product>> findByType(String type) {
+        Optional<List<ProductEntity>> entities = productCrudRepository.findByType(type);
+        return entities.map(ents -> {
+            return mapper.toProducts(ents);
+        });
+    }
+
+    public int updateProduct(boolean status, Long code) {
+        return productCrudRepository.updateProductStatus(status, code);
     }
 }

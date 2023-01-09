@@ -19,6 +19,17 @@ public class ProductEntity {
     @Column(name = "tipo")
     private String type;
 
+    @Column(name="is_active")
+    private Boolean active;
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
     public Long getCode() {
         return code;
     }
