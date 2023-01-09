@@ -59,4 +59,14 @@ public class ProductRepository implements ProductRepositoryContract{
     public int updateProduct(boolean status, Long code) {
         return productCrudRepository.updateProductStatus(status, code);
     }
+
+    public Product updateProduct(Product product) {
+        ProductEntity entity =  productCrudRepository.save(mapper.toProductEntity(product));
+        return mapper.toProduct(entity);
+    }
+
+    public boolean deleteProduct(long code) {
+        productCrudRepository.deleteById(code);
+        return !productCrudRepository.findById(code).isPresent();
+    }
 }

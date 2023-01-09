@@ -46,4 +46,12 @@ public class ProductService {
     public int updateProduct(boolean status, Long code) {
         return productRepository.updateProduct(status, code);
     }
+
+    public Product updateProduct(Product product) {
+        return productRepository.updateProduct(product);
+    }
+
+    public boolean deleteProduct(long code) {
+        return productRepository.deleteProduct(code);
+    }
 }
