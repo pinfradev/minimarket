@@ -14,9 +14,6 @@ public class PurchaseRequest {
     private String tipoPago;
 
     @NonNull
-    private LocalDateTime fecha;
-
-    @NonNull
     private Long clienteCedula;
 
     @NonNull
@@ -35,15 +32,6 @@ public class PurchaseRequest {
 
     public void setTipoPago(@NonNull String tipoPago) {
         this.tipoPago = tipoPago;
-    }
-
-    @NonNull
-    public LocalDateTime getFecha() {
-        return LocalDateTime.now();
-    }
-
-    public void setFecha(@NonNull LocalDateTime fecha) {
-        this.fecha = fecha;
     }
 
     @NonNull

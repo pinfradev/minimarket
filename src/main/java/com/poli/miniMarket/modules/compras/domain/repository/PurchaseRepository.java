@@ -7,6 +7,8 @@ import com.poli.miniMarket.modules.compras.persistence.repository.PurchaseCrudRe
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class PurchaseRepository implements PurchaseRepositoryContract{
 
@@ -25,6 +27,12 @@ public class PurchaseRepository implements PurchaseRepositoryContract{
         PurchaseEntity purchaseEntity = purchaseMapper.toPurchaseEntity(purchase);
         PurchaseEntity savePurchase = purchaseCrudRepository.save(purchaseEntity);
         return purchase;
+    }
+
+    @Override
+    public List<Purchase> getAllPurchases() {
+        List<PurchaseEntity> purchases = (List<PurchaseEntity>) purchaseCrudRepository.findAll();
+        return purchaseMapper.toPurchases(purchases);
     }
 
 
