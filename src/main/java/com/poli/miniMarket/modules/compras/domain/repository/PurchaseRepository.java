@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class PurchaseRepository implements PurchaseRepositoryContract{
@@ -33,6 +34,12 @@ public class PurchaseRepository implements PurchaseRepositoryContract{
     public List<Purchase> getAllPurchases() {
         List<PurchaseEntity> purchases = (List<PurchaseEntity>) purchaseCrudRepository.findAll();
         return purchaseMapper.toPurchases(purchases);
+    }
+
+    @Override
+    public Optional<List<Purchase>> getAllByClient(String identification) {
+        Optional<List<PurchaseEntity>> list = purchaseCrudRepository.findByClienteCedula(identification);
+        return list.map(entities -> purchaseMapper.toPurchases(entities));
     }
 
 

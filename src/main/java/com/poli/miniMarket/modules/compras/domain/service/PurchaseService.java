@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PurchaseService {
@@ -23,6 +24,10 @@ public class PurchaseService {
 
     public List<Purchase> getAll() {
         return purchaseRepository.getAllPurchases();
+    }
+
+    public Optional<List<Purchase>> getAllByClientIdentification(String identification) {
+        return purchaseRepository.getAllByClient(identification);
     }
 
 }
