@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/purchases")
@@ -29,6 +30,11 @@ public class PurchaseController {
     @GetMapping(path = "/all")
     public ResponseEntity<List<Purchase>> getAll() {
         return new ResponseEntity<>(purchaseService.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/client")
+    public ResponseEntity<Optional<List<Purchase>>> getAllPurchasesByClient(@RequestParam String ced) {
+        return new ResponseEntity<>(purchaseService.getAllByClientIdentification(ced), HttpStatus.OK);
     }
 
     private Purchase buildPurchase(PurchaseRequest request) {
